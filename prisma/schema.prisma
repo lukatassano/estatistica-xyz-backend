@@ -14,7 +14,7 @@ model User {
   id                Int               @default(autoincrement()) @id
   email             String            @unique
   name              String?
-  posts             Article[]
+  article           Article[]
   articleGroup      ArticleGroup[]
   trail             Trail[]
 }

@@ -27,7 +27,7 @@ export class UserService {
         name: true,
         email: true,
         articleGroup: true,
-        posts: true,
+        article: true,
         trail: true,
       },
     });
