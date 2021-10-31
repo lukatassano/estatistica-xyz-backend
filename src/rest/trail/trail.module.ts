@@ -1,11 +1,11 @@
 import { TrailController } from './trail.controller';
 import { TrailService } from './trail.service';
 import { Module } from '@nestjs/common';
-import { DbService } from 'src/db/db.service';
+import { DbModule } from 'src/db/db.module';
 
 @Module({
-  imports: [],
+  imports: [DbModule],
   controllers: [TrailController],
-  providers: [TrailService, DbService],
+  providers: [TrailService],
 })
 export class TrailModule {}

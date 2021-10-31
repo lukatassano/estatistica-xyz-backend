@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DbService } from 'src/db/db.service';
+import { DbModule } from 'src/db/db.module';
 import { ArticleController } from './article.controller';
 import { ArticleService } from './article.service';
 
 @Module({
-  imports: [],
+  imports: [DbModule],
   controllers: [ArticleController],
-  providers: [DbService, ArticleService],
+  providers: [ArticleService],
 })
 export class ArticleModule {}
