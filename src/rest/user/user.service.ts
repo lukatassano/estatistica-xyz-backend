@@ -1,14 +1,16 @@
 import { User } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
+import { hash } from 'bcrypt';
 import { DbService } from 'src/db/db.service';
 
 @Injectable()
 export class UserService {
   constructor(private db: DbService) {}
 
-  create(user: User) {
+  async create(user: User) {
+    const passwordHash = await hash(user.password, 8);
     return this.db.user.create({
-      data: { ...user },
+      data: { ...user, password: passwordHash },
       select: {
         id: true,
         name: true,
@@ -29,6 +31,14 @@ export class UserService {
         articleGroup: true,
         article: true,
         trail: true,
+      },
+    });
+  }
+
+  findByEmail(email: string) {
+    return this.db.user.findFirst({
+      where: {
+        email,
       },
     });
   }
